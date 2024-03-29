@@ -4,7 +4,8 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
 from data import prepare_data
-from model2 import train, test, check_result
+from model2 import train, test
+from check_result import check_result
 
 
 default_args = {
@@ -68,7 +69,7 @@ run_check_result = BranchPythonOperator(
 
 run_dvc_push = BashOperator(
     task_id='run_dvc_push',
-    bash_command='cd /app && dvc add data && dvc add model2 && dvc push',
+    bash_command='cd /app && dvc add data && dvc add model && dvc push',
     dag=dag
 )
 

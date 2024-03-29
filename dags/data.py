@@ -14,4 +14,3 @@ def prepare_data(csv_path: str) -> List[str]:
     wine_test.to_csv('/app/data/wine_test.csv', sep=',', index=False)
 
 
-

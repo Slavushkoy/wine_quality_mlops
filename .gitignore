@@ -5,3 +5,5 @@
 /model2
 clearml.conf
 Dockerfile
+/mlops_venv
+/model
