@@ -1,6 +1,6 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-from data import get_data
+from dags.data import get_data
 from clearml import Task
 
 

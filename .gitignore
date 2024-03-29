@@ -1,3 +1,7 @@
 /data
 /catboost_info
 .pkl
+/model2.pkl
+/model2
+clearml.conf
+Dockerfile
