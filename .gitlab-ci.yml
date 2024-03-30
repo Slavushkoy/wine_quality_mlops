@@ -13,6 +13,7 @@ lint:
 dvc:
   stage: test
   script:
+    - pip install -r requirements.txt
     - dvc pull
     - ls model
     - test -f model
