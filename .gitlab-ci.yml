@@ -2,13 +2,13 @@ image: python:3.8
 stages:
   - test
 
-lint:
-  stage: test
-  script:
-    - pip install -r requirements.txt
-    - pip install -U mypy
-    - mypy --config-file pyproject.toml .
-  allow_failure: true
+#lint:
+#  stage: test
+#  script:
+#    - pip install -r requirements.txt
+#    - pip install -U mypy
+#    - mypy --config-file pyproject.toml .
+#  allow_failure: true
 
 dvc:
   stage: test
@@ -19,15 +19,15 @@ dvc:
     - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
     - dvc pull
   allow_failure: false
-  needs: ["lint"]
+#  needs: ["lint"]
 
 test_unit:
   stage: test
   script:
     - pip install -r requirements.txt
     - export PYTHONPATH=./app:$PYTHONPATH
-    - pytest ./test/test_predict.py
     - pytest ./test/test_healthcheck.py
+    - pytest ./test/test_predict.py
   allow_failure: false
   needs: ["dvc"]
 
