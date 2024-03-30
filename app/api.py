@@ -35,7 +35,7 @@ def healthcheck():
 
 
 @app.post("/predict/")
-def predict(data: VineInput) -> VineOutput:
+def predict(data: VineInput):
     if model is None:
         return JSONResponse(content={"message": f"Service is not ready. {reason}"}, status_code=501)
 

@@ -26,10 +26,10 @@ test_unit:
   script:
     - pip install -r requirements.txt
     - dvc remote add origin $MINIO_URL
-    - export PYTHONPATH=./app:$PYTHONPATH
     - export AWS_ACCESS_KEY_ID=$ACCESS_KEY
     - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
     - dvc pull --force
+    - export PYTHONPATH=./app:$PYTHONPATH
     - pytest ./test/test_healthcheck.py
     - pytest ./test/test_predict.py
   allow_failure: false
