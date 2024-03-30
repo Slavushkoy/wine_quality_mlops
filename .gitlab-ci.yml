@@ -18,12 +18,6 @@ dvc:
     - export AWS_ACCESS_KEY_ID=$ACCESS_KEY
     - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
     - dvc pull
-    - if [ $? -eq 0 ]; then
-      echo "DVC pull successful"
-      else
-      echo "DVC pull failed"
-      exit 1
-      fi
   allow_failure: false
 
 test_unit:
