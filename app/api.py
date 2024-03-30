@@ -11,7 +11,7 @@ subprocess.run(["dvc", "pull"])
 
 
 try:
-    model = load("model")
+    model = load("../model")
 except FileNotFoundError:
     model = None
     reason = "File 'model.pkl' not found. Model set to None."
