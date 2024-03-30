@@ -29,9 +29,9 @@ def healthcheck():
         if model is not None:
             return JSONResponse(content={"message": "Service is ready"}, status_code=200)
         else:
-            return JSONResponse(content={"message": f"Service is not ready. {reason}"}, status_code=500)
+            return JSONResponse(content={"message": f"Service is not ready. {reason}"}, status_code=501)
     except Exception as e2:
-        return JSONResponse(content={"message": f"An error occurred: {e2})"}, status_code=500)
+        return JSONResponse(content={"message": f"An error occurred: {e2})"}, status_code=501)
 
 
 @app.post("/predict/")
