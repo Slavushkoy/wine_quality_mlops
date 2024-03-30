@@ -11,7 +11,7 @@ subprocess.run(["dvc", "pull"])
 
 
 try:
-    model = load("model")
+    model = load("../model")
 except FileNotFoundError:
     model = None
     reason = "File 'model.pkl' not found. Model set to None."
@@ -37,7 +37,7 @@ def healthcheck():
 @app.post("/predict/")
 def predict(data: VineInput) -> VineOutput:
     if model is None:
-        return JSONResponse(content={"message": f"Service is not ready. {reason}"}, status_code=500)
+        return JSONResponse(content={"message": f"Service is not ready. {reason}"}, status_code=501)
 
     try:
         input_data = data.dict()
@@ -45,7 +45,7 @@ def predict(data: VineInput) -> VineOutput:
         quality = model.predict(input_df)[0]
         return VineOutput(predicted_quality=quality)
     except Exception as e3:
-        return JSONResponse(content={"message": f"An error occurred: {e3})"}, status_code=500)
+        return JSONResponse(content={"message": f"An error occurred: {e3})"}, status_code=501)
 
 
 if __name__ == "__main__":
