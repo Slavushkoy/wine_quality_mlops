@@ -13,12 +13,13 @@ lint:
 dvc:
   stage: test
   script:
-    - pip install dvc
+    - pip install dvc==3.42.0  dvc-s3==3.0.1
     - dvc remote add origin $MINIO_URL
     - export AWS_ACCESS_KEY_ID=$ACCESS_KEY
     - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
     - dvc pull
   allow_failure: false
+  needs: ["lint"]
 
 test_unit:
   stage: test
