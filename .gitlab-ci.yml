@@ -18,8 +18,12 @@ dvc:
     - export AWS_ACCESS_KEY_ID=$ACCESS_KEY
     - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
     - dvc pull
-    - ls model
-    - test -f model && echo "File exists" || echo "File does not exist"
+    - if [ $? -eq 0 ]; then
+      echo "DVC pull successful"
+      else
+      echo "DVC pull failed"
+      exit 1
+      fi
   allow_failure: false
 
 test_unit:
