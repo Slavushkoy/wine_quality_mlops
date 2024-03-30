@@ -1,0 +1,30 @@
+image: python:3.8
+stages:
+  - test
+
+lint:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pip install -U mypy
+    - mypy --config-file pyproject.toml .
+  allow_failure: true
+
+dvc:
+  stage: test
+  script:
+    - dvc pull
+    - ls model
+    - test -f model
+
+
+test_unit:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest ./test/test_predict.py
+    - pytest ./test/test_healthcheck.py
+  allow_failure: false
+  needs: ["dvc"]
+
+
