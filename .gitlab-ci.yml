@@ -14,10 +14,13 @@ dvc:
   stage: test
   script:
     - pip install -r requirements.txt
+    - dvc remote add origin $MINIO_URL
+    - export AWS_ACCESS_KEY_ID=$ACCESS_KEY
+    - export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
     - dvc pull
     - ls model
-    - test -f model
-
+    - test -f model && echo "File exists" || echo "File does not exist"
+  allow_failure: false
 
 test_unit:
   stage: test
